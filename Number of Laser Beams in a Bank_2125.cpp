@@ -51,9 +51,9 @@ public:
     int numberOfBeams(vector<string>& bank) {
         int n=bank.size();
         int m=bank[0].length();
-        int arr[n];
         int count;
         int beams=0;
+        int prev=0;
         for(int i=0;i<n;i++){
             count=0;
             for(int j=0;j<m;j++){
@@ -61,20 +61,14 @@ public:
                     count++;
                 }
             }
-            arr[i]=count;
+            if(count!=0){
+                beams+=(prev*count);
+                prev=count;
+            }
             
         }
 
-        for(int k=0;k<n-1;k++){
-            int l=k+1;
-            while(l<n-1 && arr[l]==0){
-                l++;
-            }
-            if(arr[k]!=0){
-                beams=beams+(arr[k]*arr[l]);
-                cout<<"multiplying "<<arr[k]<<" "<<arr[l]<<"\n";
-            }
-        }
+        
         return beams;
     }
 };
