@@ -56,3 +56,24 @@ public:
         return flag1 or flag2;
     }
 };
+
+class Solution {
+public:
+    bool isMonotonic(vector<int>& nums) {
+        bool flag1=true;
+        bool flag2=true;
+        for(int i=1;i<nums.size();i++){
+            if(nums[i]>nums[i-1]){
+                flag1=false;
+            }
+            if(nums[i]<nums[i-1]){
+                flag2=false;
+            }
+            if(flag1==false && flag2==false){
+                return false;
+            }
+
+        }
+        return flag1 or flag2;
+    }
+};
