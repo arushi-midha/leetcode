@@ -47,3 +47,28 @@ public:
         return finalans;
     }
 };
+
+
+
+class Solution {
+public:
+    vector<int> sequentialDigits(int low, int high) {
+        vector<int> ans;
+        char str[]="123456789";
+        int val=0;
+        for(int win=2;win<10;win++){
+            for(int index=0;index<10-win;index++){
+                val=0;
+                for(int i=0;i<win;i++){
+                    val+=(str[index+i]-'0')*pow(10,win-i-1);
+                }
+                if(val>=low && val<=high){
+                    ans.push_back(val);
+                }
+            }
+        }
+        
+     
+        return ans;
+    }
+};
