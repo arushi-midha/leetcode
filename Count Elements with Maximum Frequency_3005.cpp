@@ -55,3 +55,25 @@ public:
         return ans;
     }
 };
+
+//------------------------SINGLE PASS-----------------------
+class Solution {
+public:
+    int maxFrequencyElements(vector<int>& nums) {
+        map<int, int> my_map;
+        int max=0;
+        int ans;
+        for(int num:nums){
+            my_map[num]++;
+            int freq=my_map[num];
+            if(freq>max){
+                max=freq;
+                ans=freq;
+            }
+            else if(freq==max){
+                ans+=freq;
+            }
+        }
+        return ans;
+    }
+};
