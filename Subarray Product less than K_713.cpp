@@ -25,6 +25,9 @@ Constraints:
 0 <= k <= 106
 */
 
+/*
+ABSOLUTE BRUTE FORCE SHIT ASS SOLUTION BECAUSE BRAIN WASNT WORKING
+
 class Solution {
 public:
     int numSubarrayProductLessThanK(vector<int>& nums, int k) {
@@ -43,6 +46,27 @@ public:
                     break;
                 }
             }
+        }
+        return count;
+    }
+};*/
+
+class Solution {
+public:
+    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+        int i=0;
+        int j=0;
+        int product=1;
+        int n=nums.size();
+        int count=0;
+        for(int i=0, j=0;j<n;j++){
+            product*=nums[j];
+            while(i<=j && product>=k){
+                product/=nums[i];
+                i++;
+            }
+            count+=j-i+1;
+            
         }
         return count;
     }
