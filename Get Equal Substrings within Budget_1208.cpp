@@ -52,3 +52,25 @@ public:
         return maxans;
     }
 };
+
+class Solution {
+public:
+    int equalSubstring(string s, string t, int maxcost) {
+        int i=0,j=0;
+        int n=s.length();
+        int maxans=0;
+        for(int i=0;i<n;i++){
+            s[i]=abs(s[i]-t[i]);
+        }
+
+        for(int j=0;j<n;j++){
+            maxcost-=s[j];
+            while(maxcost<0 and i<=j){
+                maxcost+=s[i];
+                i++;
+            }
+            maxans=max(maxans,j-i+1);
+        }
+        return maxans;
+    }
+};
