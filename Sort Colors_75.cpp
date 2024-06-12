@@ -34,3 +34,75 @@ public:
         sort(nums.begin(),nums.end());
     }
 };
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        vector<int> count(3);
+        
+        for(int n:nums){
+            count[n]++;
+        }
+        int k=0;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<count[i];j++){
+                nums[k]=i;
+                k++;
+            }
+        }
+        
+        
+
+
+
+
+    }
+};
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        vector<int> count(3);
+        vector<int> og;
+        for(int n:nums){
+            count[n]++;
+            og.push_back(n);
+        }
+        for(int i=1;i<3;i++){
+            count[i]=count[i-1]+count[i];
+        }
+        int n=og.size();
+        for(int i=n-1;i>-1;i--){
+            int x=count[og[i]]-1;
+            count[og[i]]--;
+            nums[x]=og[i];
+        }
+
+
+
+
+    }
+};
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int start=0;
+        int end=nums.size()-1;
+        int iter=0;
+        while(iter<=end){
+            if(nums[iter]==0){
+                swap(nums[iter],nums[start]);
+                iter++;
+                start++;
+            }
+            else if(nums[iter]==2){
+                swap(nums[iter],nums[end]);
+                end--;
+            }
+            else{
+                iter++;
+            }
+        }
+    }
+};
