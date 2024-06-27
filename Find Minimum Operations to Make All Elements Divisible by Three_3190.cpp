@@ -47,3 +47,16 @@ public:
         return result;
     }
 };
+
+
+class Solution {
+public:
+    int minimumOperations(vector<int>& nums) {
+        int result=0;
+        int k=3;
+        for(int i=0;i<nums.size();i++){
+            result+=min(nums[i]%k,k-nums[i]%k);
+        }
+        return result;
+    }
+};
