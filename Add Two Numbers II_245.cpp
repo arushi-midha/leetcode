@@ -80,3 +80,56 @@ public:
         return prev;
     }
 };
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+
+    ListNode* reverselist(ListNode* head){
+        ListNode* prev=NULL;
+        ListNode* curr=head;
+        ListNode* next;
+        while(curr){
+            next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* r1=reverselist(l1);
+        ListNode* r2=reverselist(l2);
+        ListNode* dummy=new ListNode();
+        ListNode* temp=dummy;
+        int carry=0;
+        int sum;
+        while(r1 or r2 or carry){
+            sum=0;
+            if(r1){
+                sum+=r1->val;
+                r1=r1->next;
+            }
+            if(r2){
+                sum+=r2->val;
+                r2=r2->next;
+            }
+            sum+=carry;
+            carry=sum/10;
+            ListNode* newnode= new ListNode(sum%10);
+            temp->next=newnode;
+            temp=temp->next;
+        }
+        ListNode* ans=reverselist(dummy->next);
+        return ans;
+    }
+};
