@@ -127,3 +127,35 @@ public:
 
     }
 };
+
+class Solution {
+public:
+    int find(vector<int>&nums,int low, int high, int target, int i){
+        int res=-1;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(nums[mid]==target){
+                res=mid;
+                if(i==1){
+                    high=mid-1;
+                }
+                else{
+                    low=mid+1;
+                }
+            }
+            else if(nums[mid]<target){
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+        return res;
+    }
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> ans(2,-1);
+        ans[0]=find(nums,0,nums.size()-1,target,1);
+        ans[1]=find(nums,0,nums.size()-1,target,2);
+        return ans;
+    }
+};
