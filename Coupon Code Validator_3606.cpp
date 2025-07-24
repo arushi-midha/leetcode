@@ -86,4 +86,38 @@ public:
         }
         return ans;
     }
-};v
+};
+
+class Solution {
+public:
+    vector<string> validateCoupons(vector<string>& code, vector<string>& businessLine, vector<bool>& isActive) {
+        vector<int> ind;
+        int n=code.size();
+        for(int i=0;i<n;i++){
+            bool fl=true;
+            if(!code[i].empty() && isActive[i] && businessLine[i]!="invalid"){
+                for(char c:code[i]){
+                    if(!isalnum(c) && c!='_'){
+                        fl=false;
+                        break;
+                    }
+                }
+            }
+            else{
+                fl=false;
+            }
+            if(fl)ind.push_back(i);
+            
+
+        }
+        sort(ind.begin(),ind.end(),[&](int a,int b){
+            return (businessLine[a]<businessLine[b]) || (businessLine[a]==businessLine[b] && code[a]<code[b]);
+        });
+        vector<string> ans;
+        for(int i:ind){
+            ans.push_back(code[i]);
+        }
+        return ans;
+
+    }
+};
